@@ -1,4 +1,6 @@
-alumina
-=======
+scraperwiki / alumina
+=====================
 
-A simple dashboard for your data projects
+Alumina: What you add to Cobalt to make pretty "Cobalt Blue".
+
+Alumina: A simple dashboard to show off your Cobalt data projects.
