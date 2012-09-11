@@ -1,8 +1,8 @@
 # scraperwiki / alumina #
 
-Alumina: What you add to Cobalt to make the lustrous "Cobalt Blue".
+Alumina: What you add to Cobalt to make the lustrous pigment "Cobalt Blue".
 
-Alumina: A simple dashboard to show off your Cobalt data projects.
+Alumina: What you add to Cobalt data projects to make them look awesome.
 
 ## How to use ##
 
