@@ -6,7 +6,7 @@ Alumina: A simple dashboard to show off your Cobalt data projects.
 
 ## How to use ##
 
-This library is intended to be cloned into ScraperWiki Data Services projects, as a client-facing data interface. To do this, follow these simple steps:
+This library is intended to be cloned into ScraperWiki Data Services projects, as a client-facing data interface. Like so:
 
     $ cd /my-data-project/http/
     $ git clone git@github.com:scraperwiki/alumina.git
@@ -26,7 +26,9 @@ It also looks in scraperwiki.json for the following keys, and if it finds them, 
 
 Your overview page will be accessible at a URL like:
 
-    https://box.scraperwiki.com/scraperwiki/project-name/optional-api-key/http/overview/ 
+    https://box.scraperwiki.com/scraperwiki/my-data-project/0PT10N4L-AP1-K3Y/http/overview/ 
+
+Note: For Alumnia to work, you *must* create symlinks for `README.md` and `scraperwiki.json` in the `http/` directory. Since this means these two files will now be accessible via the http web endpoint, we suggest you assign a `publishing-token` to restrict access to the endpoint.
 
 To keep the library up to date:
 
