@@ -42,16 +42,16 @@ $(function(){
         success: function(data){
             var $ul = $('<ul>').addClass('nav nav-tabs');
             var $tables = $('<div>').addClass('tables');
-            $.each(data, function(i,table_name){
+            $.each(data, function(i,table['name']){
                 var $li = $('<li>');
                 if(i==0){ $li.addClass('active'); }
-                $('<a href="#">' + table_name + '</a>').appendTo($li);
+                $('<a href="#">' + table['name'] + '</a>').appendTo($li);
                 $li.appendTo($ul);
                 var $table = $('<div>').addClass('table').css('height', 400);
                 $.ajax({
                     url: "../../sqlite",
                     data: {
-                        q: "SELECT * FROM `" + table_name + "`"
+                        q: "SELECT * FROM `" + table['name'] + "`"
                     },
                     dataType: 'json',
                     cache: false,
