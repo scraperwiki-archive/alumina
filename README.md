@@ -9,7 +9,7 @@ Alumina: What you add to Cobalt data projects to make them look awesome.
 This library is intended to be cloned into ScraperWiki Data Services projects, as a client-facing data interface. Like so:
 
     $ cd /my-data-project/http/
-    $ git clone git@github.com:scraperwiki/alumina.git
+    $ git clone git://github.com/scraperwiki/alumina.git
     $ mv alumina overview
 
 Note: Alumnia contains two symlinks in its base directory, one pointing to the `README.md` file two levels up, and one the `scraperwiki.json` file two levels up. Since this means these two files will now be accessible via the http web endpoint, we suggest you assign a `publishing-token` to restrict access to the endpoint.
