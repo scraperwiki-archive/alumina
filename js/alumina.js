@@ -42,7 +42,7 @@ $(function(){
         success: function(data){
             var $ul = $('<ul>').addClass('nav nav-tabs');
             var $tables = $('<div>').addClass('tables');
-            $.each(data, function(i,table['name']){
+            $.each(data, function(i,table){
                 var $li = $('<li>');
                 if(i==0){ $li.addClass('active'); }
                 $('<a href="#">' + table['name'] + '</a>').appendTo($li);
