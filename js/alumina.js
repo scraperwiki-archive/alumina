@@ -32,6 +32,33 @@ $(function(){
         }
     });
 
+    $.ajax({
+        url: "../../sqlite",
+        data: {
+            q: "SELECT name FROM sqlite_master WHERE type='table' LIMIT 1"
+        },
+        dataType: 'json',
+        cache: false,
+        success: function(data){
+            $.ajax({
+                url: "../../sqlite",
+                data: {
+                    q: "SELECT * FROM `" + data[0]['name'] + "`"
+                },
+                dataType: 'json',
+                cache: false,
+                success: function(data){
+                    console.log(data);
+                }
+            });
+        }, error: function(jqXHR, textStatus, errorThrown){
+            $('<div>').addClass('alert').html('<button type="button" class="close" data-dismiss="alert">×</button> <strong>Something went wrong!</strong> We couldn&rsquo;t select data from your project&rsquo;s SQLite API.').appendTo('#data');
+            $('#datagrid').hide();
+        }
+    });
+
+    /*
+
     var data = [
         {id: 0, date: '2011-01-01', x: 1, y: 2, z: 3, country: 'DE', geo: {lat:52.56, lon:13.40} },
         {id: 1, date: '2011-02-02', x: 2, y: 4, z: 24, country: 'UK', geo: {lat:54.97, lon:-1.60}},
@@ -50,6 +77,8 @@ $(function(){
     });
     grid.visible = true;
     grid.render();
+
+    */
 
     var $hds = $('<span>').addClass('drop-shadow').appendTo('.page-header');
     $(window).scroll(function(){
