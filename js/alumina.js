@@ -45,7 +45,7 @@ $(function(){
             $.each(data, function(i,table){
                 var $li = $('<li>').bind('click', function(){
                     $(this).addClass('active').siblings('.active').removeClass('active');
-                    $('.tables .table').eq($(this).prevAll()).show().siblings('.table').hide();
+                    $('.tables .table').eq($(this).prevAll().length).show().siblings('.table').hide();
                 });
                 $('<a href="#">' + table['name'] + '</a>').appendTo($li);
                 var $table = $('<div>').addClass('table').css('height', 400);
