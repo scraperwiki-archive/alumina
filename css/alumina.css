@@ -90,6 +90,8 @@ i.icon-refresh.rotating {
 
 #notes .well {
     font-family: Georgia, 'Times New Roman', Times, serif;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 #notes .well h1 {
