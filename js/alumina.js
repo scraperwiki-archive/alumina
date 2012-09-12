@@ -48,7 +48,12 @@ $(function(){
                 dataType: 'json',
                 cache: false,
                 success: function(data){
-                    console.log(data);
+                    var grid = new recline.View.SlickGrid({
+                        model: new recline.Model.Dataset({ records: data }),
+                        el: $('#datagrid')
+                    });
+                    grid.visible = true;
+                    grid.render();
                 }
             });
         }, error: function(jqXHR, textStatus, errorThrown){
