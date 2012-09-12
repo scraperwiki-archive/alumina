@@ -43,10 +43,11 @@ $(function(){
             var $ul = $('<ul>').addClass('nav nav-tabs');
             var $tables = $('<div>').addClass('tables');
             $.each(data, function(i,table){
-                var $li = $('<li>');
-                if(i==0){ $li.addClass('active'); }
+                var $li = $('<li>').bind('click', function(){
+                    $(this).addClass('active').siblings('.active').removeClass('active');
+                    $('.tables .table').eq($(this).prevAll()).show().siblings('.table').hide();
+                });
                 $('<a href="#">' + table['name'] + '</a>').appendTo($li);
-                $li.appendTo($ul);
                 var $table = $('<div>').addClass('table').css('height', 400);
                 $.ajax({
                     url: "../../sqlite",
@@ -64,6 +65,13 @@ $(function(){
                         grid.render();
                     }
                 });
+                if(i==0){ 
+                    $li.addClass('active');
+                } else {
+                    $table.hide();
+                }
+                $li.appendTo($ul);
+                $table.appendTo($tables);
             });
             $ul.appendTo('#data');
             $tables.appendTo('#data');
