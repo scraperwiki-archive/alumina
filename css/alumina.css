@@ -1,0 +1,84 @@
+body {
+    background: #fff url(../img/subtle-pattern.png);
+}
+
+#info {
+    padding-top: 110px;
+}
+
+.page-header {
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    width: 940px;
+    background: #fff url(../img/subtle-pattern.png);
+    margin: 0;
+    padding-top: 20px;
+}
+
+.page-header .drop-shadow {
+    position: fixed;
+    z-index: 998;
+    top: 90px;
+    display: block;
+    width: 940px;
+    height: 15px;
+    background: transparent url(../img/header-drop-shadow.png) 0 0 no-repeat;
+    opacity: 0;
+}
+
+.powered-by {
+    position: absolute;
+    bottom: 16px;
+    right: -8px;
+    display: block;
+    background: transparent url(https://media.scraperwiki.com/images/powered.png) center center no-repeat;
+    overflow: hidden;
+    height: 0;
+    width: 186px;
+    padding-top: 30px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.powered-by:hover {
+    background-color: rgba(150,150,150,0.1);
+}
+
+.powered-by:active {
+    bottom: 15px;
+    background-color: rgba(100,100,100,0.1);
+}
+
+h1 small {
+    margin-left: 10px;
+}
+
+.lead b {
+    color: #59AC00;
+}
+
+@-webkit-keyframes rotation {
+    from {-webkit-transform: rotate(0deg);}
+    to   {-webkit-transform: rotate(359deg);}
+}
+
+@keyframes rotation {
+    from {-webkit-transform: rotate(0deg);}
+    to   {-webkit-transform: rotate(359deg);}
+}
+
+i.icon-refresh.rotating {
+    -webkit-animation: rotation 2s infinite linear;
+    -moz-animation: rotation 2s infinite linear;
+}
+
+.slick-contextmenu input {
+    margin-top: 8px;
+    margin-right: 3px;
+}
+
+#notes {
+    padding-bottom: 100px;    
+}
