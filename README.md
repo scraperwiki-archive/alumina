@@ -11,14 +11,12 @@ This library is intended to be cloned into ScraperWiki Data Services projects, a
     $ cd /my-data-project/http/
     $ git clone git@github.com:scraperwiki/alumina.git
     $ mv alumina overview
-    $ ln -s ../README.md README.md
-    $ ln -s ../scraperwiki.json scraperwiki.json
 
-Note: For Alumnia to work, you *must* create symlinks for `README.md` and `scraperwiki.json` in the `http/` directory. Since this means these two files will now be accessible via the http web endpoint, we suggest you assign a `publishing-token` to restrict access to the endpoint.
+Note: Alumnia contains two symlinks in its base directory, one pointing to the `README.md` file two levels up, and one the `scraperwiki.json` file two levels up. Since this means these two files will now be accessible via the http web endpoint, we suggest you assign a `publishing-token` to restrict access to the endpoint.
 
 ## How to use ##
 
-Alumina pulls in your data via the SQLite API, and your `README.md` via the symbolic link you just created in your `http/` directory.
+Alumina pulls in your data via the SQLite API, and your `README.md` via the symbolic link in its root directory.
 
 It also looks in `scraperwiki.json` for the following keys, and if it finds them, it inserts them into the interface:
 
