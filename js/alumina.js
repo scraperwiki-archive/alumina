@@ -8,7 +8,7 @@ $(function(){
             $('#notes .loading').remove();
             var converter = new Showdown.converter();
             var html = converter.makeHtml(text);
-            $('#notes').append(html);
+            $('#notes').append('<div class="well">' + html + '</div>');
         }, error: function(jqXHR, textStatus, errorThrown){
             $('#notes .loading').remove();
             $('<div>').addClass('alert').html('<button type="button" class="close" data-dismiss="alert">×</button> <strong>Sorry!</strong> We couldn&rsquo;t find your project&rsquo;s README.md file. Are you sure it exists?').appendTo('#notes');

@@ -88,7 +88,18 @@ i.icon-refresh.rotating {
     padding-bottom: 100px;    
 }
 
-#notes .btn-group {
-    float: right;
-    margin-top: 16px;
+#notes .well {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+#notes .well h1 {
+    font-size: 30px;
+}
+
+#notes .well h2 {
+    font-size: 24px;
+}
+
+#notes .well h3 {
+    font-size: 21px;
 }
