@@ -35,27 +35,38 @@ $(function(){
     $.ajax({
         url: "../../sqlite",
         data: {
-            q: "SELECT name FROM sqlite_master WHERE type='table' LIMIT 1"
+            q: "SELECT name FROM sqlite_master WHERE type='table'"
         },
         dataType: 'json',
         cache: false,
         success: function(data){
-            $.ajax({
-                url: "../../sqlite",
-                data: {
-                    q: "SELECT * FROM `" + data[0]['name'] + "`"
-                },
-                dataType: 'json',
-                cache: false,
-                success: function(data){
-                    var grid = new recline.View.SlickGrid({
-                        model: new recline.Model.Dataset({ records: data }),
-                        el: $('#datagrid')
-                    });
-                    grid.visible = true;
-                    grid.render();
-                }
+            var $ul = $('<ul>').addClass('nav nav-tabs');
+            var $tables = $('<div>').addClass('tables');
+            $.each(data, function(i,table_name){
+                var $li = $('<li>');
+                if(i==0){ $li.addClass('active'); }
+                $('<a href="#">' + table_name + '</a>').appendTo($li);
+                $li.appendTo($ul);
+                var $table = $('<div>').addClass('table').css('height', 400);
+                $.ajax({
+                    url: "../../sqlite",
+                    data: {
+                        q: "SELECT * FROM `" + table_name + "`"
+                    },
+                    dataType: 'json',
+                    cache: false,
+                    success: function(data){
+                        var grid = new recline.View.SlickGrid({
+                            model: new recline.Model.Dataset({ records: data }),
+                            el: $table
+                        });
+                        grid.visible = true;
+                        grid.render();
+                    }
+                });
             });
+            $ul.appendTo('#data');
+            $tables.appendTo('#data');
         }, error: function(jqXHR, textStatus, errorThrown){
             $('<div>').addClass('alert').html('<button type="button" class="close" data-dismiss="alert">×</button> <strong>Something went wrong!</strong> We couldn&rsquo;t select data from your project&rsquo;s SQLite API.').appendTo('#data');
             $('#datagrid').hide();
