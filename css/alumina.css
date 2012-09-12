@@ -55,6 +55,11 @@ h1 small {
     margin-left: 10px;
 }
 
+h1 i.icon-refresh.rotating {
+    vertical-align: 1px;
+    opacity: 0.6;
+}
+
 .lead b {
     color: #59AC00;
 }

@@ -1,5 +1,31 @@
 $(function(){
 
+    $.ajax({
+        url: "README.symlink.md",
+        dataType: 'text',
+        cache: false,
+        success: function(data){
+            $('#notes .loading').remove();
+            $('#notes').append('<pre>' + data + '</pre>');
+        }, error: function(jqXHR, textStatus, errorThrown){
+            $('#notes .loading').remove();
+            $('<div>').addClass('alert').html('<i class="icon-exclamation-sign"></i> Your Data Scientist&rsquo;s notes could not be loaded &ndash; Sorry!').css('color', '#333').appendTo('#notes');
+        }
+    });
+
+    $.ajax({
+        url: "scraperwiki.symlink.json",
+        dataType: 'json',
+        cache: false,
+        success: function(data){
+            console.log(data);
+            $('#info h1').html(data['project-name'] + ' <small>' + data['customer-name'] + '</small>');
+            $('#info .lead').html('<b>Latest status:</b> ' + data['project-status']);
+        }, error: function(jqXHR, textStatus, errorThrown){
+            console.log('scraperwiki.json could not be loaded');
+        }
+    });
+
     var data = [
         {id: 0, date: '2011-01-01', x: 1, y: 2, z: 3, country: 'DE', geo: {lat:52.56, lon:13.40} },
         {id: 1, date: '2011-02-02', x: 2, y: 4, z: 24, country: 'UK', geo: {lat:54.97, lon:-1.60}},
@@ -27,28 +53,6 @@ $(function(){
             op = Math.min(1, st/30);
         }
         $hds.css('opacity', op);
-    });
-    
-    $.ajax({
-        url: "README.symlink.md",
-        dataType: 'text',
-        success: function(data){
-            $('#notes .loading').remove();
-            $('#notes').append('<pre>' + data + '</pre>');
-        }, error: function(jqXHR, textStatus, errorThrown){
-            $('#notes .loading').remove();
-            $('<div>').addClass('alert').html('<i class="icon-exclamation-sign"></i> Your Data Scientist&rsquo;s notes could not be loaded &ndash; Sorry!').css('color', '#333').appendTo('#notes');
-        }
-    });
-    
-    $.ajax({
-        url: "scraperwiki.symlink.json",
-        dataType: 'json',
-        success: function(data){
-            console.log(data);
-        }, error: function(jqXHR, textStatus, errorThrown){
-            console.log('scraperwiki.json could not be loaded');
-        }
     });
 
 });
