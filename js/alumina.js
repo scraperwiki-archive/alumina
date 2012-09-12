@@ -9,7 +9,7 @@ $(function(){
             $('#notes').append('<pre>' + data + '</pre>');
         }, error: function(jqXHR, textStatus, errorThrown){
             $('#notes .loading').remove();
-            $('<div>').addClass('alert').html('<i class="icon-exclamation-sign"></i> Your Data Scientist&rsquo;s notes could not be loaded &ndash; Sorry!').css('color', '#333').appendTo('#notes');
+            $('<div>').addClass('alert').html('<button type="button" class="close" data-dismiss="alert">×</button> <strong>Sorry!</strong> We couldn&rsquo;t find your project&rsquo;s README.md file. Are you sure it exists?').appendTo('#notes');
         }
     });
 
@@ -19,10 +19,16 @@ $(function(){
         cache: false,
         success: function(data){
             console.log(data);
-            $('#info h1').html(data['project-name'] + ' <small>' + data['customer-name'] + '</small>');
-            $('#info .lead').html('<b>Latest status:</b> ' + data['project-status']);
+            if('project-name' in data && 'customer-name' in data){
+                $('#info h1').html(data['project-name'] + ' <small>' + data['customer-name'] + '</small>');
+            }
+            if('status-message' in data){
+                $('#info .lead').html('<b>Latest status:</b> ' + data['status-message']);
+            }
         }, error: function(jqXHR, textStatus, errorThrown){
-            console.log('scraperwiki.json could not be loaded');
+            $('<div>').addClass('alert').html('<button type="button" class="close" data-dismiss="alert">×</button> <strong>Something went wrong!</strong> We couldn&rsquo;t find your project&rsquo;s scraperwiki.json file. Are you sure it exists?').prependTo('#info');
+            $('#info .lead').hide();
+            $('#info h1 small').hide();
         }
     });
 

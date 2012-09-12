@@ -87,3 +87,8 @@ i.icon-refresh.rotating {
 #notes {
     padding-bottom: 100px;    
 }
+
+#notes .btn-group {
+    float: right;
+    margin-top: 16px;
+}
