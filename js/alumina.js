@@ -45,12 +45,6 @@ $(function(){
             var $ul = $('<ul>').addClass('nav nav-tabs');
             var $tables = $('<div>').addClass('tables');
             $.each(data, function(i,table){
-                var $li = $('<li>').bind('click', function(){
-                    $(this).addClass('active').siblings('.active').removeClass('active');
-                    $('.tables .table').eq($(this).prevAll().length).show().siblings('.table').hide();
-                });
-                $('<a href="#">' + table['name'] + '</a>').appendTo($li);
-                var $table = $('<div>').addClass('table').css('height', 300);
                 $.ajax({
                     url: "../../sqlite",
                     data: {
@@ -59,21 +53,29 @@ $(function(){
                     dataType: 'json',
                     cache: false,
                     success: function(data){
+                        var $li = $('<li>').bind('click', function(){
+                            $(this).addClass('active').siblings('.active').removeClass('active');
+                            $('.tables .table').eq($(this).prevAll().length).show().siblings('.table').hide();
+                        });
+                        $('<a href="#">' + table['name'] + '</a>').appendTo($li);
+                        var $table = $('<div>').addClass('table').css('height', 300);
+                        
                         var grid = new recline.View.SlickGrid({
                             model: new recline.Model.Dataset({ records: data }),
                             el: $table
                         });
                         grid.visible = true;
                         grid.render();
+                        
+                        if(i==0){ 
+                            $li.addClass('active');
+                        } else {
+                            $table.hide();
+                        }
+                        $li.appendTo($ul);
+                        $table.appendTo($tables);
                     }
                 });
-                if(i==0){ 
-                    $li.addClass('active');
-                } else {
-                    $table.hide();
-                }
-                $li.appendTo($ul);
-                $table.appendTo($tables);
             });
             $ul.appendTo('#data');
             $tables.appendTo('#data');
