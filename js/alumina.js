@@ -20,12 +20,19 @@ $(function(){
         dataType: 'json',
         cache: false,
         success: function(data){
-            console.log(data);
-            if('project-name' in data && 'customer-name' in data){
-                $('#info h1').html(data['project-name'] + ' <small>' + data['customer-name'] + '</small>');
+            if('project-name' in data){
+                $('#info h1 strong').text(data['project-name']);
+                $('title').text(data['project-name'] + ' | powered by ScraperWiki');
+            }
+            if('customer-name' in data){
+                $('#info h1 small').text(data['customer-name']);
+            } else {
+                $('#info h1 small').hide();
             }
             if('status-message' in data){
                 $('#info .lead').html('<b>Latest status:</b> ' + data['status-message']);
+            } else {
+                $('#info .lead').hide();
             }
         }, error: function(jqXHR, textStatus, errorThrown){
             $('<div>').addClass('alert').html('<button type="button" class="close" data-dismiss="alert">×</button> <strong>Something went wrong!</strong> We couldn&rsquo;t find your project&rsquo;s scraperwiki.json file. Are you sure it exists?').prependTo('#info');
