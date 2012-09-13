@@ -54,7 +54,7 @@ $(function(){
                 $.ajax({
                     url: "../../sqlite",
                     data: {
-                        q: "SELECT * FROM `" + table['name'] + "`"
+                        q: "SELECT * FROM `" + table['name'] + "` LIMIT 500"
                     },
                     dataType: 'json',
                     cache: false,
