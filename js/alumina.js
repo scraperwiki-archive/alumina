@@ -20,17 +20,17 @@ $(function(){
         dataType: 'json',
         cache: false,
         success: function(data){
-            if('project-name' in data){
-                $('#info h1 strong').text(data['project-name']);
-                $('title').text(data['project-name'] + ' | powered by ScraperWiki');
+            if('project_name' in data){
+                $('#info h1 strong').text(data['project_name']);
+                $('title').text(data['project_name'] + ' | powered by ScraperWiki');
             }
-            if('customer-name' in data){
-                $('#info h1 small').text(data['customer-name']);
+            if('customer_name' in data){
+                $('#info h1 small').text(data['customer_name']);
             } else {
                 $('#info h1 small').hide();
             }
-            if('status-message' in data){
-                $('#info .lead').html('<b>Latest status:</b> ' + data['status-message']);
+            if('status_message' in data){
+                $('#info .lead').html('<b>Latest status:</b> ' + data['status_message']);
             } else {
                 $('#info .lead').hide();
             }
