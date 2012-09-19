@@ -4,6 +4,10 @@ Alumina: What you add to Cobalt to make the lustrous pigment "Cobalt Blue".
 
 Alumina: What you add to Cobalt data projects to make them look awesome.
 
+## Live example ##
+
+http://box.scraperwiki.com/scraperwiki/alumina-example/http/overview/
+
 ## How to install ##
 
 This library is intended to be cloned into ScraperWiki Data Services projects, as a client-facing data interface. Like so:
