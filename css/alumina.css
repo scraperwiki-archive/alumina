@@ -92,11 +92,6 @@ i.icon-refresh.rotating {
     -moz-animation: rotation 2s infinite linear;
 }
 
-.slick-contextmenu input {
-    margin-top: 8px;
-    margin-right: 3px;
-}
-
 #notes {
     padding-bottom: 100px;    
 }
