@@ -47,7 +47,7 @@ function showSlickGrid(table_name){
             ordercolumn = args.sortCol.field;
             orderdirection = args.sortAsc;
             sqlite({
-                table: 'ebay',
+                table: table_name,
                 orderby: ordercolumn + ' ' + (orderdirection ? 'asc' : 'desc')
             }).done(function(newdata){
                 data = newdata;
@@ -67,7 +67,7 @@ function showSlickGrid(table_name){
                 $('#data h2 small').show();
                 loading = true;
                 var sqlite_options = {
-                    table: 'ebay',
+                    table: table_name,
                     limit: rowsToGet,
                     offset: grid.getDataLength()
                 }
