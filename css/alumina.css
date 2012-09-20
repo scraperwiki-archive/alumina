@@ -44,8 +44,13 @@ body {
     margin-right: 10px;
 }
 
-#info h1 i.icon-refresh.rotating {
+h1 i.icon-refresh {
     vertical-align: 1px;
+    opacity: 0.6;
+}
+
+h2 i.icon-refresh {
+    vertical-align: 0;
     opacity: 0.6;
 }
 

@@ -5,12 +5,12 @@ $(function(){
         dataType: 'text',
         cache: false,
         success: function(text){
-            $('#notes .loading').remove();
+            $('#notes h2 small').remove();
             var converter = new Showdown.converter();
             var html = converter.makeHtml(text);
             $('#notes').append('<div class="well">' + html + '</div>');
         }, error: function(jqXHR, textStatus, errorThrown){
-            $('#notes .loading').remove();
+            $('#notes h2 small').remove();
             $('<div>').addClass('alert').html('<button type="button" class="close" data-dismiss="alert">×</button> <strong>Sorry!</strong> We couldn&rsquo;t find your project&rsquo;s README.md file. Are you sure it exists?').appendTo('#notes');
         }
     });
@@ -57,6 +57,7 @@ $(function(){
         }, error: function(jqXHR, textStatus, errorThrown){
             $('<div>').addClass('alert').html('<button type="button" class="close" data-dismiss="alert">×</button> <strong>Something went wrong!</strong> We couldn&rsquo;t select data from your project&rsquo;s SQLite API.').appendTo('#data');
             $('#datagrid').hide();
+            $('#data h2 small').remove();
         }
     });
 
