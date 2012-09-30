@@ -22,7 +22,8 @@ function showSlickGrid(table_name){
     }).done(function(data){
         var grid;
         var options = {
-            enableColumnReorder: true
+            enableColumnReorder: true,
+            enableTextSelectionOnCells: true
         }
         // create column definitions from first row of data
         var columns = [];
