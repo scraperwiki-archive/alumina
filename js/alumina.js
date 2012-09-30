@@ -1,5 +1,6 @@
 function sqlite(args){
     var options = {
+        columns: "*",
         table: "sqlite_master WHERE type='table' AND name NOT LIKE '#_%'  ESCAPE '#'",
         limit: 50,
         offset: 0,
@@ -11,7 +12,7 @@ function sqlite(args){
         dataType: 'json',
         cache: false,
         data: {
-            q: 'SELECT * FROM ' + options.table + ( options.orderby ? ' ORDER BY ' + options.orderby : '' ) + ' LIMIT ' + options.limit + ' OFFSET ' + options.offset
+            q: 'SELECT ' + options.columns + ' FROM ' + options.table + ( options.orderby ? ' ORDER BY ' + options.orderby : '' ) + ' LIMIT ' + options.limit + ' OFFSET ' + options.offset
         }
     });
 }
@@ -89,6 +90,20 @@ function showSlickGrid(table_name){
                 });
             }
         });
+
+        function saveColumnInfo(e, args){
+            var cols = [];
+            $.each(args.grid.getColumns(), function(i, col){
+                var c = {};
+                c[col.name] = col.width;
+                cols.push(c);
+            });
+            console.log(cols);
+        }
+
+        grid.onColumnsReordered.subscribe(saveColumnInfo);
+        grid.onColumnsResized.subscribe(saveColumnInfo);
+
     });
 }
 
