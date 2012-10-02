@@ -1,6 +1,6 @@
 function sqlite(args){
     var options = {
-        table: "sqlite_master WHERE type='table' AND name NOT LIKE '#_%'  ESCAPE '#'",
+        table: "sqlite_master WHERE (type='table' OR type='view') AND name NOT LIKE '#_%'  ESCAPE '#'",
         limit: 50,
         offset: 0,
         orderby: null
