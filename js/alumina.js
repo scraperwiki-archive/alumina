@@ -39,20 +39,15 @@ function showSlickGrid(table_name){
             names.push(key);
         }
 
-        var key = [location.pathname, table_name]
+        var key = [location.pathname, 'columns', table_name]
         var storedColumns = store.get(JSON.stringify(key));
         var storedNames = [];
         if(storedColumns){
             $.each(storedColumns, function(i, col){
                 storedNames.push(col.name);
             });
-
             names.sort();
             storedNames.sort();
-
-            console.log(names);
-            console.log(storedNames);
-
             if(String(names) == String(storedNames)){
                 columns = storedColumns;
             }
@@ -113,7 +108,7 @@ function showSlickGrid(table_name){
         });
 
         function saveColumnInfo(e, args){
-            var key = [location.pathname, table_name]
+            var key = [location.pathname, 'columns', table_name];
             store.set(JSON.stringify(key), args.grid.getColumns())
         }
 
@@ -171,16 +166,24 @@ $(function(){
             // no tables
             $('#data').hide();
         } else {
+            var key = [location.pathname, 'tab'];
+            var storedTableName = store.get(JSON.stringify(key));
+            var name = storedTableName || tables[0]['name'];
+
             var $ul = $('<ul>').addClass('nav nav-tabs');
             $.each(tables, function(i, table){
-                $('<li' + ( i==0 ? ' class="active"' : '' ) + '>').append('<a href="#">' + table['name'] + '</a>').bind('click', function(){
+                $('<li' + ( table['name'] == name ? ' class="active"' : '' ) + '>').append('<a href="#">' + table['name'] + '</a>').bind('click', function(e){
+                    e.preventDefault();
                     $(this).addClass('active').siblings('.active').removeClass('active');
                     showSlickGrid($(this).text());
+                    var key = [location.pathname, 'tab'];
+                    store.set(JSON.stringify(key), $(this).text());
                 }).appendTo($ul);
             });
             $ul.appendTo('#data');
             $('<div id="datagrid">').appendTo('#data');
-            showSlickGrid(tables[0]['name']);
+
+            showSlickGrid(name);
         }
         $('#data h2 small').hide();
     }).fail(function(jqXHR, textStatus, errorThrown){
