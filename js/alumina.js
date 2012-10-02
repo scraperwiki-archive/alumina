@@ -171,16 +171,14 @@ $(function(){
             // no tables
             $('#data').hide();
         } else {
-            if(tables.length > 1){
-                var $ul = $('<ul>').addClass('nav nav-tabs');
-                $.each(tables, function(i, table){
-                    $('<li' + ( i==0 ? ' class="active"' : '' ) + '>').append('<a href="#">' + table['name'] + '</a>').bind('click', function(){
-                        $(this).addClass('active').siblings('.active').removeClass('active');
-                        showSlickGrid($(this).text());
-                    }).appendTo($ul);
-                });
-                $ul.appendTo('#data');
-            }
+            var $ul = $('<ul>').addClass('nav nav-tabs');
+            $.each(tables, function(i, table){
+                $('<li' + ( i==0 ? ' class="active"' : '' ) + '>').append('<a href="#">' + table['name'] + '</a>').bind('click', function(){
+                    $(this).addClass('active').siblings('.active').removeClass('active');
+                    showSlickGrid($(this).text());
+                }).appendTo($ul);
+            });
+            $ul.appendTo('#data');
             $('<div id="datagrid">').appendTo('#data');
             showSlickGrid(tables[0]['name']);
         }
