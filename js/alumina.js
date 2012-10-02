@@ -28,6 +28,7 @@ function showSlickGrid(table_name){
         }
         // create column definitions from first row of data
         var columns = [];
+        var names = [];
         for(var key in data[0]){
             columns.push({
                 id: key,
@@ -35,6 +36,26 @@ function showSlickGrid(table_name){
                 field: key,
                 sortable: true
             });
+            names.push(key);
+        }
+
+        var key = [location.pathname, table_name]
+        var storedColumns = store.get(JSON.stringify(key));
+        var storedNames = [];
+        if(storedColumns){
+            $.each(storedColumns, function(i, col){
+                storedNames.push(col.name);
+            });
+
+            names.sort();
+            storedNames.sort();
+
+            console.log(names);
+            console.log(storedNames);
+
+            if(String(names) == String(storedNames)){
+                columns = storedColumns;
+            }
         }
 
         // create the table
@@ -92,13 +113,8 @@ function showSlickGrid(table_name){
         });
 
         function saveColumnInfo(e, args){
-            var cols = [];
-            $.each(args.grid.getColumns(), function(i, col){
-                var c = {};
-                c[col.name] = col.width;
-                cols.push(c);
-            });
-            console.log(cols);
+            var key = [location.pathname, table_name]
+            store.set(JSON.stringify(key), args.grid.getColumns())
         }
 
         grid.onColumnsReordered.subscribe(saveColumnInfo);
