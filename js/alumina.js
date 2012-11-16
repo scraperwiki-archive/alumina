@@ -1,7 +1,7 @@
 function sqlite(args){
     var options = {
         columns: "*",
-        table: "sqlite_master WHERE (type='table' OR type='view') AND name NOT LIKE '#_%'  ESCAPE '#'",
+        table: "[sqlite_master] WHERE (type='table' OR type='view') AND name NOT LIKE '#_%'  ESCAPE '#'",
         limit: 50,
         offset: 0,
         orderby: null
@@ -19,7 +19,7 @@ function sqlite(args){
 
 function showSlickGrid(table_name){
     sqlite({
-        table: table_name
+        table: '[' + table_name + ']'
     }).done(function(data){
         var grid;
         var options = {
